@@ -1,0 +1,76 @@
+<app-menu pantalla="Filtro"></app-menu>
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">filtro</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <form [formGroup]="filtrado">
+
+    <ion-item>
+      <ion-list>
+        <ion-title style="margin-top: 10%;">
+          Genero
+        </ion-title>
+        <ion-item>
+          <ion-select aria-label="genres" placeholder="Selecciona un genero" formControlName="genero">
+            <ion-select-option *ngFor="let genero of generos" value="{{ genero.slug }}">{{ genero.name
+              }}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
+    </ion-item>
+
+    <ion-item>
+      <ion-list>
+        <ion-title>
+          Plataforma
+        </ion-title>
+        <ion-item>
+          <ion-select aria-label="platforms" placeholder="Selecciona una plataforma" formControlName="plataforma">
+            <ion-select-option *ngFor="let plataforma of plataformas" value="{{ plataforma.id }}">{{
+              plataforma.name
+              }}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
+    </ion-item>
+
+    <ion-item>
+      <ion-list>
+        <ion-title>
+          Tienda o tiendas preferidas
+        </ion-title>
+        <ion-item *ngFor="let tienda of tiendas">
+          <ion-checkbox value="{{ tienda.id }}" (ionChange)="agrega($event)">{{ tienda.name }}</ion-checkbox>
+        </ion-item>
+      </ion-list>
+    </ion-item>
+
+    <ion-item>
+      <ion-list>
+        <ion-title>
+          Valoración mínima
+        </ion-title>
+        <ion-item>
+          <ion-range style="width: 20rem; padding-left: 5%; padding-right: 5%;" aria-label="valoracion" [pin]="true"
+            [pinFormatter]="pinFormatter" color="danger" formControlName="valoracion" max="5"></ion-range>
+        </ion-item>
+      </ion-list>
+    </ion-item>
+
+    <ion-item>
+      <ion-grid>
+        <ion-row class="ion-justify-content-center">
+          <ion-button (click)="lanzarBusqueda()" color="danger">Buscar</ion-button>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+
+  </form>
+
+  <ion-item *ngIf="!!resultado">
+    <ion-text>Hola</ion-text>
+  </ion-item>
+</ion-content>

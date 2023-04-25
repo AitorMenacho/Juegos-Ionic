@@ -1,0 +1,108 @@
+<div *ngIf="character" class="ion-page" #page>
+  <ion-header [translucent]="true">
+    <ion-toolbar>
+      <ion-nav-link router-direcction="forward">
+        <ion-icon name="arrow-back-circle-outline" (click)="atras()"></ion-icon>
+      </ion-nav-link>
+      <ion-label style="margin-right: 5%;" slot="end">{{ character.name }}</ion-label>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content [fullscreen]="true">
+    <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+    <ion-header collapse="condense">
+      <ion-toolbar>
+        <ion-title>{{ character.name }}</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <img src="{{ character.background_image }}" alt="{{ character.name }}">
+    <div class="portada"></div>
+    <div class="cajaTitulo">
+      <div class="titulo">
+        <h1>{{ character.name }}</h1>
+        <h5>Ult.Act: {{ character.updated }}</h5>
+      </div>
+    </div>
+    <ion-item class="caja">
+      <ion-label>
+        <h1>Plataformas</h1>
+      </ion-label>
+      <ion-label>
+        <h1>Tiendas</h1>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-list lines="none" [inset]="true">
+        <ion-item *ngFor="let plat of plataformas">
+          <ion-label>{{ plat.platform.name }}</ion-label>
+        </ion-item>
+      </ion-list>
+      <ion-list lines="none" [inset]="true">
+        <ion-item *ngFor="let stores of character.stores">
+          <ion-label (click)="abrir(stores.id)">{{ stores.store.name }}</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-item>
+    <div class="trailer" *ngIf="trailer.length">
+      <ion-button id="open-modal" expand="block" color="danger" fill="outline" shape="round" class="caja">Ver
+        trailer</ion-button>
+      <ion-modal #modal trigger="open-modal" [canDismiss]="canDismiss" [presentingElement]="page">
+        <ng-template>
+          <ion-header>
+            <ion-toolbar>
+              <ion-title>Trailer</ion-title>
+              <ion-buttons slot="end">
+                <ion-button (click)="modal.dismiss()">Cerrar</ion-button>
+              </ion-buttons>
+            </ion-toolbar>
+          </ion-header>
+          <ion-content class="ion-padding">
+            <video src="{{ trailer[0].data.max }}" autoplay width="100%" controls></video>
+          </ion-content>
+        </ng-template>
+      </ion-modal>
+    </div>
+    <ion-item>
+      <ion-title>
+        Fotos
+      </ion-title>
+    </ion-item>
+    <ion-item>
+      <div class="imagenes">
+        <ion-thumbnail *ngFor="let img of imagenes">
+          <img (click)="verImage(true, img.image)" src="{{ img.image }}" alt="">
+        </ion-thumbnail>
+        <ion-modal [isOpen]="isModalOpen">
+          <ng-template>
+            <ion-header>
+              <ion-toolbar>
+                <ion-title>Imagen</ion-title>
+                <ion-buttons slot="end">
+                  <ion-button (click)="verImage(false, 'undefined')">Cerrar</ion-button>
+                </ion-buttons>
+              </ion-toolbar>
+            </ion-header>
+            <ion-content class="ion-padding">
+              <img src="{{ image }}" alt="">
+            </ion-content>
+          </ng-template>
+        </ion-modal>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-title>
+        DLC
+      </ion-title>
+    </ion-item>
+    <ion-item *ngFor="let dlc of dlcs">
+      <ion-card (click)="verMas(dlc.id)">
+        <img src="{{ dlc.background_image}}" alt="Juego">
+        <ion-card-header>
+          <ion-card-title>{{ dlc.name }}</ion-card-title>
+        </ion-card-header>
+      </ion-card>
+    </ion-item>
+  </ion-content>
+</div>

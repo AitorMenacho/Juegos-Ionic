@@ -1,0 +1,65 @@
+ion-icon {
+    font-size: 2rem;
+    margin-left: 10%;
+}
+
+.cajaTitulo {
+    display: flex;
+    justify-content: center;
+    margin-top: -3rem;
+}
+
+.titulo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 80%;
+    height: 5rem;
+    border-radius: 20px;
+    background: rgba(70, 69, 69, 0.22);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+}
+
+.titulo h1 {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.titulo h5 {
+    font-weight: 200;
+    font-size: 0.9rem;
+    margin-top: -3%;
+}
+
+.caja {
+    margin-top: 5%;
+}
+
+.trailer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.trailer ion-button {
+    width: 50%;
+    margin-bottom: 5%;
+}
+
+.imagenes {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+ion-thumbnail {
+    --size: 130px;
+    --border-radius: 20px;
+    margin: 5%;
+}

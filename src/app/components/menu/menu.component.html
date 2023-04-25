@@ -1,0 +1,7 @@
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>{{ pantalla }}</ion-title>
+    <ion-searchbar placeholder="Nombre" show-clear-button="always" class="search" slot="end" autocomplete="on"
+      type="text" (ionInput)="escribeTitulo($event)"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
